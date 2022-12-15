@@ -17,4 +17,19 @@ defmodule Hangman.Impl.GameTest do
     game = Game.new_game("hello")
     assert game.letters == ~w[h e l l o]
   end
+
+  test "make_move after already won or lost" do
+    for state <- [:won, :lost] do
+      game = Game.new_game()
+      game = %{game | game_state: state}
+
+      {new_game, tally} = Game.make_move(game, "x")
+
+      assert new_game == game
+      assert tally.turns_left == game.turns_left
+      assert tally.game_state == game.game_state
+      assert tally.letters == game.letters
+      assert tally.used == []
+    end
+  end
 end
