@@ -29,10 +29,26 @@ defmodule Hangman.Impl.Game do
   end
 
   @spec make_move(t, String.t()) :: {t, tally}
-  def make_move(game = %{game_state: state}, _guess)
-      when state in [:won, :lost] do
-    {game, tally(game)}
+  def make_move(game = %{game_state: state}, _guess) when state in [:won, :lost] do
+    game
+    |> with_tally()
   end
+
+  def make_move(game = %{used: used}, guess) do
+    game
+    |> accept_guess(guess, guess in used)
+    |> with_tally()
+  end
+
+  defp accept_guess(game, _guess, _already_used = true) do
+    %{game | game_state: :already_used}
+  end
+
+  defp accept_guess(game, guess, _already_used) do
+    %{game | used: MapSet.put(game.used, guess)}
+  end
+
+  defp with_tally(game), do: {game, tally(game)}
 
   defp tally(game) do
     %{

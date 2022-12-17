@@ -32,4 +32,22 @@ defmodule Hangman.Impl.GameTest do
       assert tally.used == []
     end
   end
+
+  test "make_move with a duplicate guess" do
+    game = Game.new_game()
+    game = %{game | used: MapSet.put(game.used, "h")}
+
+    {new_game, _tally} = Game.make_move(game, "h")
+
+    assert new_game.game_state == :already_used
+  end
+
+  test "make_move with a new guess" do
+    game = Game.new_game()
+    guess = "x"
+
+    {new_game, _tally} = Game.make_move(game, guess)
+
+    assert guess in new_game.used
+  end
 end
