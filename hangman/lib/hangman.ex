@@ -4,7 +4,9 @@ defmodule Hangman do
   @opaque game :: Game.t()
 
   @spec new_game :: game
+  @spec new_game(String.t()) :: game
   defdelegate new_game, to: Game
+  defdelegate new_game(word), to: Game
 
   @spec make_move(game, String.t()) :: {game, Game.tally()}
   defdelegate make_move(game, guess), to: Game

@@ -83,9 +83,9 @@ defmodule Hangman.Impl.GameTest do
     [
       ["a", 6, :bad_guess, ~w[_ _ _ _ _], ~w[a]],
       ["a", 6, :already_used, ~w[_ _ _ _ _], ~w[a]],
-      ["e", 5, :good_guess, ~w[_ e _ _ _], ~w[a e]],
-      ["x", 4, :bad_guess, ~w[_ e _ _ _], ~w[a e x]],
-      ["l", 3, :good_guess, ~w[_ e l l _], ~w[a e l x]]
+      ["e", 6, :good_guess, ~w[_ e _ _ _], ~w[a e]],
+      ["x", 5, :bad_guess, ~w[_ e _ _ _], ~w[a e x]],
+      ["l", 5, :good_guess, ~w[_ e l l _], ~w[a e l x]]
     ]
     |> test_sequence_of_moves
   end
@@ -94,12 +94,12 @@ defmodule Hangman.Impl.GameTest do
     [
       ["a", 6, :bad_guess, ~w[_ _ _ _ _], ~w[a]],
       ["a", 6, :already_used, ~w[_ _ _ _ _], ~w[a]],
-      ["e", 5, :good_guess, ~w[_ e _ _ _], ~w[a e]],
-      ["x", 4, :bad_guess, ~w[_ e _ _ _], ~w[a e x]],
-      ["l", 3, :good_guess, ~w[_ e l l _], ~w[a e l x]],
-      ["o", 2, :good_guess, ~w[_ e l l o], ~w[a e l o x]],
-      ["y", 1, :bad_guess, ~w[_ e l l o], ~w[a e l o x y]],
-      ["h", 0, :won, ~w[h e l l o], ~w[a e h l o x y]]
+      ["e", 6, :good_guess, ~w[_ e _ _ _], ~w[a e]],
+      ["x", 5, :bad_guess, ~w[_ e _ _ _], ~w[a e x]],
+      ["l", 5, :good_guess, ~w[_ e l l _], ~w[a e l x]],
+      ["o", 5, :good_guess, ~w[_ e l l o], ~w[a e l o x]],
+      ["y", 4, :bad_guess, ~w[_ e l l o], ~w[a e l o x y]],
+      ["h", 4, :won, ~w[h e l l o], ~w[a e h l o x y]]
     ]
     |> test_sequence_of_moves
   end
@@ -108,12 +108,16 @@ defmodule Hangman.Impl.GameTest do
     [
       ["a", 6, :bad_guess, ~w[_ _ _ _ _], ~w[a]],
       ["a", 6, :already_used, ~w[_ _ _ _ _], ~w[a]],
-      ["e", 5, :good_guess, ~w[_ e _ _ _], ~w[a e]],
-      ["x", 4, :bad_guess, ~w[_ e _ _ _], ~w[a e x]],
-      ["l", 3, :good_guess, ~w[_ e l l _], ~w[a e l x]],
-      ["o", 2, :good_guess, ~w[_ e l l o], ~w[a e l o x]],
-      ["y", 1, :bad_guess, ~w[_ e l l o], ~w[a e l o x y]],
-      ["r", 0, :lost, ~w[_ e l l o], ~w[a e l o r x y]]
+      ["f", 5, :bad_guess, ~w[_ _ _ _ _], ~w[a f]],
+      ["x", 4, :bad_guess, ~w[_ _ _ _ _], ~w[a f x]],
+      ["l", 4, :good_guess, ~w[_ _ l l _], ~w[a f l x]],
+      ["y", 3, :bad_guess, ~w[_ _ l l _], ~w[a f l x y]],
+      ["r", 2, :bad_guess, ~w[_ _ l l _], ~w[a f l r x y]],
+      ["z", 1, :bad_guess, ~w[_ _ l l _], ~w[a f l r x y z]],
+      ["e", 1, :good_guess, ~w[_ e l l _], ~w[a e f l r x y z]],
+      ["g", 0, :lost, ~w[h e l l o], ~w[a e f g l r x y z]],
+      ["o", 0, :lost, ~w[h e l l o], ~w[a e f g l r x y z]],
+      ["y", 0, :lost, ~w[h e l l o], ~w[a e f g l r x y z]]
     ]
     |> test_sequence_of_moves
   end
