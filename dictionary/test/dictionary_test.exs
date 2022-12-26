@@ -1,17 +1,14 @@
 defmodule DictionaryTest do
   use ExUnit.Case
-  doctest Dictionary
 
-  test "word_list" do
-    word_list = Dictionary.word_list()
-    assert length(word_list) == 8879
+  test "start" do
+    state = Dictionary.start()
+    assert is_list(state)
   end
 
   test "random_word" do
-    word_list = Dictionary.word_list()
-    word = Dictionary.random_word()
-    another_word = Dictionary.random_word()
+    word_list = ["one", "two", "three"]
+    word = Dictionary.random_word(word_list)
     assert word in word_list
-    assert word != another_word
   end
 end
