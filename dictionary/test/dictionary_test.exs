@@ -2,13 +2,13 @@ defmodule DictionaryTest do
   use ExUnit.Case
 
   test "start" do
-    state = Dictionary.start()
-    assert is_list(state)
+    {:ok, pid} = Dictionary.start_link()
+    assert is_pid(pid)
   end
 
   test "random_word" do
-    word_list = ["one", "two", "three"]
-    word = Dictionary.random_word(word_list)
-    assert word in word_list
+    {:ok, pid} = Dictionary.start_link()
+    word = Dictionary.random_word(pid)
+    assert is_binary(word)
   end
 end
