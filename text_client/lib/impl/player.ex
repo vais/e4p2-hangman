@@ -23,8 +23,8 @@ defmodule TextClient.Impl.Player do
     IO.puts(message_for(tally))
     IO.puts(status_line(tally))
 
-    Hangman.make_move(game, get_guess())
-    |> interact()
+    tally = Hangman.make_move(game, get_guess())
+    interact({game, tally})
   end
 
   def message_for(tally = %{game_state: :initializing}),
