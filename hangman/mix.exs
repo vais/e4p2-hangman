@@ -25,7 +25,6 @@ defmodule Hangman.MixProject do
       {:dictionary, path: "../dictionary"},
       {:mix_test_watch, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false}
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
   end
 end
