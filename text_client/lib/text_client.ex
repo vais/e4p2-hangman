@@ -1,4 +1,7 @@
 defmodule TextClient do
-  @spec start() :: :ok
-  defdelegate start, to: TextClient.Impl.Player
+  @spec start(atom) :: :ok
+  def start(node) do
+    TextClient.Runtime.RemoteHangman.connect(node)
+    |> TextClient.Impl.Player.start()
+  end
 end

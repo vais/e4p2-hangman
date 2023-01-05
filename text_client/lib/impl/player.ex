@@ -3,9 +3,8 @@ defmodule TextClient.Impl.Player do
   @typep tally :: Hangman.tally()
   @typep state :: {game, tally}
 
-  @spec start() :: :ok
-  def start(interactor \\ &interact/1) do
-    game = Hangman.new_game()
+  @spec start(pid) :: :ok
+  def start(game, interactor \\ &interact/1) do
     tally = Hangman.tally(game)
     interactor.({game, tally})
   end
