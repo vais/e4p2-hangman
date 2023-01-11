@@ -1,0 +1,17 @@
+<p>
+<%= inspect(@tally) %>
+</p>
+<p>
+Word so far: <%= @tally.letters |> Enum.join(" ") %>
+</p>
+<p>
+Turns left: <%= @tally.turns_left %>
+</p>
+<p>
+Letters used: <%= @tally.used |> Enum.join(", ") %>
+</p>
+
+<%= form_for @conn, Routes.hangman_path(@conn, :update), [method: :put, as: :make_move], fn form -> %>
+  <%= text_input(form, :guess) %>
+  <%= submit("Make move") %>
+<% end %>

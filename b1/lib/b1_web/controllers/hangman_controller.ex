@@ -4,4 +4,22 @@ defmodule B1Web.HangmanController do
   def index(conn, _params) do
     render(conn, "index.html")
   end
+
+  def new(conn, _params) do
+    game = Hangman.new_game()
+    tally = Hangman.tally(game)
+
+    conn
+    |> put_session(:game, game)
+    |> render("game.html", tally: tally)
+  end
+
+  def update(conn, params) do
+    game = get_session(conn, :game)
+    guess = params["make_move"]["guess"]
+    tally = Hangman.make_move(game, guess)
+
+    put_in(conn.params["make_move"]["guess"], "")
+    |> render("game.html", tally: tally)
+  end
 end
