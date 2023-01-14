@@ -27,7 +27,4 @@
   </div>
 </div>
 
-<%= form_for @conn, Routes.hangman_path(@conn, :update), [method: :put, as: :make_move], fn form -> %>
-  <%= text_input(form, :guess, autocomplete: "off", autofocus: true) %>
-  <%= submit("Make move") %>
-<% end %>
+<%= make_move_or_play_again(@conn, @tally.game_state) %>
