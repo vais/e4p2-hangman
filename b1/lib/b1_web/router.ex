@@ -20,6 +20,7 @@ defmodule B1Web.Router do
     get "/", HangmanController, :index
     post "/", HangmanController, :new
     put "/", HangmanController, :update
+    get "/game", HangmanController, :show
   end
 
   # Other scopes may use custom stacks.
