@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <td>Status:</td>
+    <td><%= @tally.game_state %></td>
+  </tr>
+  <tr>
+    <td>Word so far:</td>
+    <td><%= @tally.letters |> Enum.join(" ") %></td>
+  </tr>
+  <tr>
+    <td>Turns left:</td>
+    <td><%= @tally.turns_left %></td>
+  </tr>
+  <tr>
+    <td>Letters used:</td>
+    <td><%= @tally.used |> Enum.join(", ") %></td>
+  </tr>
+</table>
