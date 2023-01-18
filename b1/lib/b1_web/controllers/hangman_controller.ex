@@ -13,6 +13,10 @@ defmodule B1Web.HangmanController do
     |> redirect(to: Routes.hangman_path(conn, :show))
   end
 
+  def update(conn, %{"make_move" => %{"guess" => ""}}) do
+    redirect(conn, to: Routes.hangman_path(conn, :show))
+  end
+
   def update(conn, %{"make_move" => %{"guess" => guess}}) do
     conn
     |> get_session(:game)
