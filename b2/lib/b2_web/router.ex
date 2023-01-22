@@ -14,10 +14,10 @@ defmodule B2Web.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", B2Web do
+  scope "/" do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", B2Web.Live.Game
   end
 
   # Other scopes may use custom stacks.
